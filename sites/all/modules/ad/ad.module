@@ -1,0 +1,46 @@
+<?php
+function    ad_menu()
+{
+    $menu =[];
+    $menu ['ad']= array(
+        'title' => 'title',
+        'page callback' => 'ad_function',
+        'access callback'=> true,
+    );
+    
+    return $menu;
+}
+function ad_function()
+{           
+    $ad=[];
+    
+    $ad['hello']= array(
+    '#theme' => 'table',
+    'title'=> 'Loan asssesment calculater',
+    '#header' => array('id','Name'),
+        '#rows'=> array(
+            array(1,'ali'),
+            array(2,'Kamran'),
+        ),
+    );
+    
+    return $ad;
+}
+
+function ad_form($form, &$form_state) {
+  
+ $form['price'] = array(
+    '#type' => 'textfield', //you can find a list of available types in the form api
+    '#title' => 'What is Your Price?',
+    '#size' => 10,
+    '#maxlength' => 10,
+    '#required' => TRUE, //make this field required 
+  );
+
+  $form['submit_button'] = array(
+    '#type' => 'submit',
+    '#value' => t('Click Here!'),
+  );
+  
+  return $form;
+}

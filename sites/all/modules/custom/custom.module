@@ -1,0 +1,85 @@
+<?php
+/**
+* Implements Hook_menu
+*/
+function custom_menu()
+{
+    $menus = [];
+    $menus['maze/%'] = array(
+        'title'           => 'MAZE',
+        'page callback'   => 'drupal_get_form',
+        'page arguments'  => array('maze_form'),
+        'access callback' => TRUE,
+    );
+    return $menus;
+}
+//
+//function maze_page()
+//{
+//    $output = [];
+//    $output['form'] = drupal_get_form('maze_form');
+//    return $output;
+//}
+function maze_form($form, &$form_state)
+{
+    $form['name'] = array(
+        '#title' => 'Name',
+        '#type'  => 'textfield',
+        '#description' => 'Enter your name',
+    );   $form['address'] = array(
+        '#title' => 'Address',
+        '#type'  => 'textarea',
+    );  
+ $form['radio']  = array(
+        '#title' => 'radio',
+        '#type'  => 'radio',
+    );  
+    dsm($form);
+    $form['action'] = array(
+        '#type'  => 'submit',
+        '#value' => 'Save'
+    );
+    $form['file'] = array(
+        '#title' => 'File',
+        '#type'  => 'file',
+    );
+    $form['image'] = array(
+        '#title' => 'image',
+        '#type' => 'file',
+    );
+    $toppings = array(
+        'pepperoni' => t('Pepperoni'),
+        'black_olives' => t('Black olives'), 
+        'veggies' => t('Veggies')
+    );
+    $form['pizza'] = array( 
+        '#title' => t('Checkboxes'),
+        '#type'  => 'checkboxes',
+        '#options' => $toppings,
+    );
+    $form['food']=array(
+        '#type' => 'fieldset',
+        '#title'=> 'Food',
+        '#collapsible' =>true,
+        '#collapsed' =>true,
+    );
+    $form['food']['hello']= array(
+        '#title' => 'image',
+        '#type' => 'file',
+    );  $form['food']['hello2']= array(
+        '#title' => 'image',
+        '#type' => 'file',
+    );
+    return $form;
+}
+function maze_form_validate(&$form, &$form_state)
+{
+    if($form_state['values']['name'] == '')
+    {
+        form_set_error('name', 'NAME cannnnnt be empty');
+    }
+}
+function maze_form_submit(&$form, &$form_state)
+{
+    dsm($form_state['values']['name']." is your name");
+}

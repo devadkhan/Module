@@ -1,0 +1,4 @@
+name = custom
+description = testing custom
+core = 7.x
+package = custom

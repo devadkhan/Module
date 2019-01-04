@@ -1,0 +1,4 @@
+name = ad
+description = calculate loan info bok
+core = 7.x
+package = ad
